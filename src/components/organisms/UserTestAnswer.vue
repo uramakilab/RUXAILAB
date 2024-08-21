@@ -20,6 +20,9 @@
           <v-tab @click="tab = 1">
             Individual Analytics
           </v-tab>
+          <v-tab @click="tab = 2">
+            Sentiment Analysis
+          </v-tab>
         </v-tabs>
 
         <div
@@ -31,6 +34,9 @@
         </div>
         <div slot="content" class="ma-0 pa-0">
           <AnalyticsView v-if="tab === 1" />
+        </div>
+        <div slot="content" class="ma-0 pa-0">
+          <SentimentAnalysisView v-if="tab === 2" />
         </div>
       </ShowInfo>
     </v-row>
@@ -45,6 +51,7 @@ import ShowInfo from '@/components/organisms/ShowInfo'
 import IntroAnswer from '@/components/molecules/IntroAnswer'
 import AnalyticsView from '@/views/admin/AnalyticsView.vue'
 import GeneralAnalytics from '@/components/organisms/GeneralAnalytics.vue'
+import SentimentAnalysisView from '@/views/admin/SentimentAnalysisView.vue'
 
 import { standardDeviation, finalResult, statistics } from '@/utils/statistics'
 
@@ -54,10 +61,12 @@ export default {
     IntroAnswer,
     AnalyticsView,
     GeneralAnalytics,
+    SentimentAnalysisView,
   },
   props: { id: { type: String, default: '' } },
   data: () => ({
-    tab: 0,
+    // tab: 0,
+    tab: 2,
     ind: 0,
     resultEvaluator: statistics(),
     intro: null,

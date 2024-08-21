@@ -68,6 +68,45 @@ export default class Controller {
   }
 
   /**
+   * Fetches documents from a specified Firestore collection based on multiple query conditions.
+   *
+   * @param {string} col - The name of the collection from which to retrieve documents.
+   * @param {Array<Object>} conditions - An array of condition objects, each specifying a field, 
+   *                                     a comparison operator, and a value to filter by.
+   * @param {string} conditions[].field - The name of the document field to filter on.
+   * @param {string} conditions[].condition - The comparison operator to apply 
+   *                                          (e.g., '==', '>=', '<=', '!=', etc.).
+   * @param {*} conditions[].value - The value to compare against the specified field.
+   *
+   * @returns {Promise<QuerySnapshot>} - A Promise that resolves to a QuerySnapshot containing 
+   *                                     the documents that match all the specified conditions.
+   *
+   * @example
+   * const conditions = [
+   *   { field: 'status', condition: '==', value: 'active' },
+   *   { field: 'createdAt', condition: '>=', value: new Date('2023-01-01') },
+   *   { field: 'role', condition: '==', value: 'admin' }
+   * ];
+   *
+   * const results = await queryWithMultipleConditions('users', conditions);
+   *
+   * results.forEach(doc => {
+   *   console.log(doc.id, " => ", doc.data());
+   * });
+   */
+  async queryWithMultipleConditions(col, conditions) {
+    const conditionArray = conditions.map((condition) =>
+      where(condition.field, condition.condition, condition.value)
+    );
+  
+    const q = query(collection(db, col), ...conditionArray);
+  
+    return getDocs(q);
+  }
+
+  
+
+  /**
    * Makes a query to get data from the database.
    *
    * @param {string} col the collection name.
