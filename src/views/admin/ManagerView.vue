@@ -1,10 +1,6 @@
 <template>
   <v-container class="pa-0 ma-0" fluid>
-    <v-overlay
-      v-if="this.$route.path.includes('manager')"
-      v-model="loading"
-      class="text-center"
-    >
+    <v-overlay v-if="this.$route.path.includes('manager')" v-model="loading" class="text-center">
       <v-progress-circular indeterminate color="#fca326" size="50" />
       <div class="white-text mt-3">
         {{ $t('common.loading') }}
@@ -28,9 +24,9 @@
         <v-card-actions class="justify-center mt-4">
           <p>
             {{ $t('common.notUser', { userEmail: user.email }) }}
-            <a style="color: #f9a826" @click="signOut()">{{
-              $t('common.changeAccount')
-            }}</a>
+            <a style="color: #f9a826" @click="signOut()">
+              {{ $t('common.changeAccount') }}
+            </a>
           </p>
         </v-card-actions>
       </v-card>
@@ -46,24 +42,14 @@
             <v-row align="center" justify="center" style="height: 100%">
               <v-col class="text-div">
                 <div v-if="accessLevel == 0" class="white--text">
-                  <p
-                    class="mobile-center"
-                    style="font-size: 58px; font-weight: 500"
-                  >
+                  <p class="mobile-center" style="font-size: 58px; font-weight: 500">
                     {{ $t('titles.manager') }}
                   </p>
-                  <p
-                    style="font-size: 22px"
-                    class="mobile-center"
-                  >
+                  <p style="font-size: 22px" class="mobile-center">
                     {{ test.testTitle }}
                   </p>
                 </div>
-                <div
-                  v-else
-                  class="white--text mobile-center"
-                  style="font-size: 58px; font-weight: 500"
-                >
+                <div v-else class="white--text mobile-center" style="font-size: 58px; font-weight: 500">
                   {{ test.testTitle }}
                 </div>
                 <v-img
@@ -84,112 +70,23 @@
           </div>
           <div>
             <v-container class="card-container">
-              <div v-if="accessLevel == 0" class="presentation-text">
-                {{ $t('common.editAndInvite') }}
+              <div v-if="accessLevel == 0">
+                <div class="presentation-text">
+                  {{ $t('common.editAndInvite') }}
+                </div>
+
+                <!-- Top Cards -->
+                <CardsManager :cards="topCards" :per-row="2" @click="go" />
               </div>
 
-              <!-- Top Cards -->
-              <v-row
-                v-if="accessLevel == 0"
-                justify="center"
-                justify-md="space-around"
-              >
-                <v-col v-for="(item, n) in topCards" :key="n" cols="12" md="6">
-                  <v-card
-                    class="rounded-xl cards-animation"
-                    height="270px"
-                    :style="item.cardStyle"
-                    :ripple="false"
-                    color="#F2F3F4"
-                    @click="go(item.path)"
-                  >
-                    <v-row
-                      style="height: 200px"
-                      justify="center"
-                      align="center"
-                    >
-                      <v-img
-                        max-height="150"
-                        :style="item.imageStyle"
-                        contain
-                        :src="require('../../assets/manager/' + item.image)"
-                      />
-                    </v-row>
+              <div>
+                <div class="presentation-text mt-5">
+                  {{ $t('common.analyzeProject') }}
+                </div>
 
-                    <div
-                      class="white--text pl-4"
-                      :style="{
-                        height: '90px',
-                        position: 'absolute',
-                        bottom: '0',
-                        width: '100%',
-                        'background-color': item.bottom,
-                        'padding-top': '10px',
-                        'border-top': '.3px solid #505050',
-                      }"
-                    >
-                      <h2>{{ $t(`titles.${item.title}`) }}</h2>
-                      <div>
-                        {{ $t(`descriptions.${item.description}`) }}
-                      </div>
-                    </div>
-                  </v-card>
-                </v-col>
-              </v-row>
-
-              <div class="presentation-text mt-5">
-                {{ $t('common.analyzeProject') }}
+                <!-- Bottom Cards -->
+                <CardsManager :cards="bottomCards" :per-row="3" @click="go" />
               </div>
-
-              <!-- Bottom Cards -->
-              <v-row justify="center" justify-md="space-around">
-                <v-col
-                  v-for="(item, i) in bottomCards"
-                  :key="i"
-                  cols="12"
-                  md="4"
-                >
-                  <v-card
-                    class="rounded-xl cards-animation"
-                    height="270px"
-                    :style="item.cardStyle"
-                    hover
-                    :ripple="false"
-                    @click="go(item.path)"
-                  >
-                    <v-row
-                      style="height: 200px"
-                      justify="center"
-                      align="center"
-                      class="px-5"
-                    >
-                      <v-img
-                        height="150"
-                        contain
-                        :src="require('../../assets/manager/' + item.image)"
-                      />
-                    </v-row>
-
-                    <div
-                      class="white--text pa-1 pl-4"
-                      :style="{
-                        height: '90px',
-                        position: 'absolute',
-                        bottom: '0',
-                        width: '100%',
-                        paddingTop: '2px',
-                        'background-color': item.bottom,
-                        'border-top': '.3px solid #505050',
-                      }"
-                    >
-                      <h2>{{ $t(`titles.${item.title}`) }}</h2>
-                      <div>
-                        {{ $t(`descriptions.${item.description}`) }}
-                      </div>
-                    </div>
-                  </v-card>
-                </v-col>
-              </v-row>
             </v-container>
           </div>
         </div>
@@ -203,10 +100,12 @@
 import Drawer from '@/components/atoms/Drawer.vue'
 import { statistics } from '@/utils/statistics'
 import i18n from '@/i18n'
+import CardsManager from '@/components/atoms/CardsManager'
 
 export default {
   components: {
     Drawer,
+    CardsManager,
   },
 
   data: () => ({
@@ -303,29 +202,14 @@ export default {
     },
 
     accessLevel() {
-      // Check if the user is defined
-      if (!this.user) return 1
-
-      // If the user is a superadmin
-      if (this.user.accessLevel === 0) return 0
-
-      // Check if the user is a collaborator or owner
-      const isTestOwner = this.test.testAdmin?.userDocId === this.user.id
-      if (isTestOwner) return 0
-
-      // Check if the user is a cooperator and get their access level
-      const coopsInfo = this.test.cooperators?.find((coops) => coops.userDocId === this.user.id)
-      if (coopsInfo) return coopsInfo.accessLevel
-
-      // Check if the test is public
-      return this.test.isPublic ? 1 : 2
+      return this.$store.getters.getUserAccessLevel(this.test)
     },
 
     navigator() {
       if (!this.test) return []
 
       const items = [
-        { title: 'Manager', icon: 'mdi-home', path: `/managerview/${this.test.id}` }, 
+        { title: 'Manager', icon: 'mdi-home', path: `/managerview/${this.test.id}` },
       ]
 
       if (this.test.template) {
@@ -343,7 +227,7 @@ export default {
           { title: 'Settings', icon: 'mdi-cog', path: `/settingsview/${this.test.id}` },
         )
       }
-      
+
       if (this.accessLevel == 1) {
         items.push(
           { title: 'Answer Test', icon: 'mdi-file-document', path: `/testview/${this.test.id}` },
@@ -379,9 +263,9 @@ export default {
 
   methods: {
     go(item) {
-      if (item.id === undefined) return this.$router.push(item).catch(() => {})
+      if (item.id === undefined) return this.$router.push(item).catch(() => { })
       if (item.id === 2) return window.open(item.path)
-      return this.$router.push(item.path).catch(() => {})
+      return this.$router.push(item.path).catch(() => { })
     },
 
     setFlag(flag, value) {
@@ -460,6 +344,7 @@ export default {
   height: 94%;
   overflow: scroll;
 }
+
 .nav {
   position: fixed;
   width: 100%;
@@ -470,6 +355,7 @@ export default {
 .background::-webkit-scrollbar {
   display: none;
 }
+
 .testTitle {
   font-style: normal;
   font-weight: bold;
@@ -500,28 +386,34 @@ export default {
 .card-container {
   width: 70%;
 }
+
 @media screen and (max-width: 960px) {
   .presentation-text {
     display: flex;
     text-align: center;
     justify-content: center;
   }
+
   .text-div {
     max-width: 100%;
     margin: 0px 10px;
     text-justify: center;
   }
+
   .image-back {
     height: 300px;
   }
+
   .mobile-center {
     display: flex;
     text-align: center;
     justify-content: center;
   }
+
   .card-container {
     width: 85%;
   }
+
   .back-gradient {
     height: 100%;
   }

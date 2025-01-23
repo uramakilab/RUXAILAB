@@ -29,6 +29,7 @@
               consentiment</span
             >
           </v-col>
+          
           <UserConsent />
         </v-card>
       </v-col>
@@ -99,13 +100,11 @@
       </v-col>
 
       <!-- Tasks -->
-
       <v-col v-if="index == 1" cols="12">
         <ModeratedTasks />
       </v-col>
 
       <!-- Post Test -->
-
       <v-col v-if="index == 2" cols="12">
         <v-card
           style="background: #f5f7ff; min-height: 410px;"
@@ -152,6 +151,7 @@ import FormPostTest from '../atoms/FormPostTest.vue'
 import UserVariables from '../atoms/UserVariables.vue'
 import ModeratedTasks from '../atoms/ModeratedTasks.vue'
 import UserConsent from '../atoms/UserConsent.vue'
+
 export default {
   components: { UserVariables, FormPostTest, ModeratedTasks, UserConsent },
   props: {

@@ -10,7 +10,18 @@
 
     <v-col cols="12" class="mt-6">
       <v-row>
-        <v-col cols="10" md="5" sm="10" class="card">
+        <v-col cols="10" md="4" sm="10" class="card">
+          <CardTypeTest
+            :img="require('../../../public/cardSorting.png')"
+            title="Card Sorting"
+            type="Test"
+            segund-type="CardSorting"
+            :texts="['Organize and categorize', 'Cluster analysis', 'Improve information structure']"
+            @click="setTestType"
+          />
+        </v-col>
+
+        <v-col cols="10" md="4" sm="10" class="card">
           <CardTypeTest
             :img="require('../../../public/specialist.png')"
             title="Usability Heuristic"
@@ -21,7 +32,7 @@
           />
         </v-col>
 
-        <v-col cols="12" md="5" sm="10" class="card">
+        <v-col cols="12" md="4" sm="10" class="card">
           <CardTypeTest
             :img="require('../../../public/user.png')"
             title="Usability User"

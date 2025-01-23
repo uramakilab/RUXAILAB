@@ -3,11 +3,12 @@ import VueRouter from 'vue-router'
 import Public from '@/router/modules/public.js'
 import Admin from '@/router/modules/admin.js'
 import SuperAdmin from '@/router/modules/superAdmin.js'
+import CardSorting from '@/router/modules/cardSorting'
 import store from '@/store'
 
 Vue.use(VueRouter)
 
-const routes = [...Public, ...Admin, ...SuperAdmin]
+const routes = [...Public, ...Admin, ...SuperAdmin, ...CardSorting]
 
 const router = new VueRouter({
   mode: 'history',

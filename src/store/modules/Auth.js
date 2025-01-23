@@ -14,16 +14,40 @@ export default {
   state: {
     user: null,
   },
+
   getters: {
     user(state) {
       return state.user
     },
+
+    getUserAccessLevel: (state) => (test) => {
+      const { user } = state
+
+      // Check if the user is defined
+      if (!user) return 1
+
+      // If the user is a superadmin
+      if (user.accessLevel === 0) return 0
+
+      // Check if the user is a test owner
+      const isTestOwner = test.testAdmin?.userDocId === user.id
+      if (isTestOwner) return 0
+
+      // Check if the user is a cooperator and get their access level
+      const coopsInfo = test.cooperators?.find((coops) => coops.userDocId === user.id)
+      if (coopsInfo) return coopsInfo.accessLevel
+
+      // Check if the test is public
+      return test.isPublic ? 1 : 2
+    },
   },
+
   mutations: {
     SET_USER(state, payload) {
       state.user = payload
     },
   },
+
   actions: {
     /**
      * This action register a User on the platform,

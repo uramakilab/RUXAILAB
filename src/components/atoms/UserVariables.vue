@@ -14,6 +14,7 @@
             <v-expansion-panel-header>
               {{ items[i].title }}
             </v-expansion-panel-header>
+            
             <v-expansion-panel-content>
               <v-form>
                 <v-text-field
@@ -80,6 +81,7 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
+        
         <v-card
           class="mt-2"
           rounded="xl"
@@ -95,6 +97,7 @@
         </v-card>
       </v-col>
     </v-row>
+
     <v-dialog v-model="show" max-width="600" persistent>
       <v-card>
         <v-card-title class="text-h6 mb-2">
@@ -102,6 +105,7 @@
             $t('UserTestTable.buttons.createNewVariable')
           }}
         </v-card-title>
+        
         <v-card-text>
           <v-form ref="form" v-model="valid">
             <v-text-field
@@ -114,6 +118,7 @@
             />
           </v-form>
         </v-card-text>
+        
         <v-card-actions>
           <v-btn color="red" class="ml-auto" dark @click="closeModal">
             <v-icon class="mr-1">

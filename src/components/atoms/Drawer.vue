@@ -6,8 +6,16 @@
       <v-list-item>
         <v-row dense>
           <v-col class="pa-0 ma-0">
-            <v-overflow-btn class="pa-0 ma-0" dark dense item-text="testTitle" :items="testsList" :label="test.testTitle"
-              background-color="#343344" style="max-width: 240px" @change="changeTest"
+            <v-overflow-btn
+              class="pa-0 ma-0"
+              dark
+              dense
+              item-text="testTitle"
+              :items="testsList"
+              :label="test.testTitle"
+              background-color="#343344"
+              style="max-width: 240px"
+              @change="changeTest"
             />
           </v-col>
         </v-row>
@@ -27,9 +35,7 @@
               </v-list-item-icon>
 
               <v-list-item-content>
-                <v-list-item-title 
-                  :style="$route.path == item.path ? 'color: #fca326' : 'color:#bababa'"
-                >
+                <v-list-item-title :style="$route.path == item.path ? 'color: #fca326' : 'color:#bababa'">
                   {{ $t(`titles.drawer.${item.title}`) }}
                 </v-list-item-title>
               </v-list-item-content>
@@ -48,9 +54,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title 
-              :style="$route.path == item.path ? 'color: #fca326' : 'color:#bababa'"
-            >
+            <v-list-item-title :style="$route.path == item.path ? 'color: #fca326' : 'color:#bababa'">
               {{ $t(`titles.drawer.${item.title}`) }}
             </v-list-item-title>
           </v-list-item-content>
@@ -66,7 +70,7 @@
         </v-icon>
       </v-btn>
     </div>
-    
+
     <div v-else class="footer">
       <v-col>
         <v-btn icon class="mt-2" @click.stop="mini = !mini">
@@ -83,8 +87,8 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
 
   data: () => ({
@@ -97,8 +101,8 @@ export default {
     },
 
     testsList() {
-      return Object.values(this.$store.getters.user.myTests)  
-    },  
+      return Object.values(this.$store.getters.user.myTests)
+    },
   },
 
   methods: {
