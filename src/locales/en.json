@@ -30,6 +30,9 @@
     "editDelete": "Edit/Delete",
     "type": "Type",
     "noNotifications": "You don't have notifications yet",
+    "notifications":"Notifications",
+    "unread":"unread",
+    "inbox":"inbox",
     "timeAgo": {
       "years": "{count} year{count !== 1 ? 's' : ''} ago",
       "months": "{count} month{count !== 1 ? 's' : ''} ago",
@@ -460,7 +463,8 @@
     "stay": "Stay",
     "leave": "Leave",
     "help": "Help",
-    "delete": "Delete"
+    "delete": "Delete",
+    "back":"Back"
   },
   "switches": {
     "noAnswer": "No answer",

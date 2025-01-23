@@ -30,6 +30,9 @@
     "editDelete": "संपादित/हटाएं",
     "type": "प्रकार",
     "noNotifications": "आपके पास अभी तक कोई सूचनाएं नहीं हैं",
+    "notifications":"सूचनाएं",
+    "unread":"अनपढ़",
+    "inbox":"इनबॉक्स",
     "timeAgo": {
       "years": "[TODO] {count}",
       "months": "[TODO] {count}",
@@ -372,7 +375,8 @@
     "stay": "रुकें",
     "leave": "छोड़ें",
     "help": "मदद",
-    "delete": "हटाएं"
+    "delete": "हटाएं",
+    "back":"पीछे"
   },
   "switches": {
     "noAnswer": "कोई उत्तर नहीं",

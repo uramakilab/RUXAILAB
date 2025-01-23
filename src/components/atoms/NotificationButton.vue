@@ -1,6 +1,6 @@
 <template>
   <div v-if="user.notifications">
-    <v-menu :position-x="x" :position-y="y" absolute offset-y min-width="200">
+    <v-menu :position-x="x" :position-y="y" absolute offset-y min-width="300">
       <template v-slot:activator="{ on, attrs }">
         <v-badge
           color="red"
@@ -29,58 +29,78 @@
           </v-btn>
         </v-badge>
       </template>
-      <div
-        v-if="user.notifications.length > 0"
-        style="max-height: 50vh;overflow-y: scroll;"
-      >
-        <v-list
-          v-for="(notification, i) in user.notifications"
-          :key="i"
+      
+      <!--  navigation bar -->
+      <v-card>
+        <v-app-bar
+          color="primary"
+          dark
           dense
-          class="ma-0 py-1"
-          style="border-radius: 0px !important;"
         >
-          <v-list-item
-            dense
-            style="font-size: 14px; font: Roboto"
-            class="px-2"
-            :disabled="notification.read"
-            @click="goToNotificationRedirect(notification)"
+          <v-toolbar-title> {{ $t('common.notifications') }}</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            @click="goToNotificationPage"
           >
-            <v-list-item-content>
-              <v-list-item-title style="font-weight: bold">
-                {{ notification.title }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ notification.description }}
-              </v-list-item-subtitle>
-              <v-list-item-subtitle>
-                Sent by {{ notification.author }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-            <v-list-item-icon v-if="!notification.read">
-              <v-chip x-small color="success" outlined label>
-                NEW!
-              </v-chip>
-            </v-list-item-icon>
-          </v-list-item>
+            View All
+          </v-btn>
+        </v-app-bar>
 
-          <div class="divider" />
-        </v-list>
-      </div>
-      <v-list v-else>
-        <v-list-item>
-          <template>
-            <center class="mt-3 pa-1" style="color: #a7a7a7">
-              <strong>{{ $t('common.noNotifications') }}</strong
-              ><br />
-              <v-icon class="mt-2 mb-3">
-                mdi-bell-off
-              </v-icon>
-            </center>
-          </template>
-        </v-list-item>
-      </v-list>
+        <v-card-text>
+          <div
+            v-if="user.notifications.length > 0"
+            style="max-height: 50vh; overflow-y: auto;"
+          >
+            <v-list
+              v-for="(notification, i) in user.notifications"
+              :key="i"
+              dense
+              class="ma-0 py-1"
+            >
+              <v-list-item
+                dense
+                style="font-size: 14px; font-family: Roboto;"
+                class="px-2"
+                :disabled="notification.read"
+                @click="goToNotificationRedirect(notification)"
+              >
+                <v-list-item-content>
+                  <v-list-item-title style="font-weight: bold">
+                    {{ notification.title }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>
+                    {{ notification.description }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle>
+                    Sent by {{ notification.author }}
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-icon v-if="!notification.read">
+                  <v-chip x-small color="success" outlined label>
+                    NEW!
+                  </v-chip>
+                </v-list-item-icon>
+              </v-list-item>
+              <v-divider></v-divider>
+            </v-list>
+          </div>
+          <v-list v-else>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="text-center grey--text">
+                  <strong>{{ $t('common.noNotifications') }}</strong>
+                </v-list-item-title>
+                <v-list-item-subtitle class="text-center">
+                  <v-icon class="mt-2 mb-3">
+                    mdi-bell-off
+                  </v-icon>
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card-text>
+      </v-card>
     </v-menu>
   </div>
 </template>
@@ -101,25 +121,24 @@ export default {
   },
   methods: {
     async goToNotificationRedirect(notification) {
-      // Mark notification as read
       await this.$store.dispatch('markNotificationAsRead', {
         notification: notification,
         user: this.user,
       })
-      // Redirect to notification url
       window.open(`/${notification.redirectsTo}`)
     },
     checkIfHasNewNotifications() {
       const newNot = this.user.notifications.filter((n) => n.read === false)
       return newNot.length ?? 0
     },
+    goToNotificationPage() {
+      this.$router.push('/notifications')
+      console.log("Navigating to notifications page")
+    },
   },
 }
 </script>
 
 <style scoped>
-.divider {
-  background: #c4c4c4 !important;
-  height: 1.5px;
-}
+/* You can remove this style block as we're using Vuetify's built-in dividers now */
 </style>
