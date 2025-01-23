@@ -441,7 +441,8 @@
     "leave": "Tem certeza que deseja sair?",
     "sureLeave": "Você tem certeza de que quer sair? Todas as suas alterações serão descartadas",
     "imageURL": "Digite o URL da imagem:",
-    "deleteHeuristic": "Tem certeza de excluir a heurística "
+    "deleteHeuristic": "Tem certeza de excluir a heurística ",
+    "deleteAccount":"Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita."
   },
   "buttons": {
     "next": "Próximo",
@@ -450,6 +451,7 @@
     "username": "Nome de usuário",
     "goToConsole": "Ir para o console",
     "signout": "Sair",
+    "profile":"Perfil",
     "returnToConsole": "Retornar ao console",
     "tip": "Dica",
     "create": "Criar",
@@ -458,7 +460,8 @@
     "leave": "Sair",
     "stay": "Ficar",
     "help": "Ajuda",
-    "delete": "Deletar"
+    "delete": "Deletar",
+    "deleteAccount":"Excluir conta"
   },
   "switches": {
     "noAnswer": "Sem resposta",

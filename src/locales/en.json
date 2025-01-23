@@ -442,7 +442,9 @@
     "leave": "Are you sure you want to leave?",
     "sureLeave": "Are you sure you want to leave? All your changes will be discarded",
     "imageURL": "Type the image URL:",
-    "deleteHeuristic": "Are you sure delete the heuristic "
+    "deleteHeuristic": "Are you sure delete the heuristic ",
+    "deleteAccount":" Are you sure you want to delete your account? This action cannot be undone."
+
   },
   "buttons": {
     "next": "Next",
@@ -451,6 +453,7 @@
     "username": "Username",
     "goToConsole": "Go to Console",
     "signout": "Sign-out",
+    "profile":"profile",
     "returnToConsole": "Return to Console",
     "tip": "Tip",
     "cancel": "Cancel",
@@ -460,7 +463,8 @@
     "stay": "Stay",
     "leave": "Leave",
     "help": "Help",
-    "delete": "Delete"
+    "delete": "Delete",
+    "deleteAccount":"Delete Account"
   },
   "switches": {
     "noAnswer": "No answer",

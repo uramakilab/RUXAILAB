@@ -193,13 +193,23 @@
           </v-list-item>
 
           <div class="divider" />
-
+          <v-list-item
+            dense
+            style="font-size: 14px; font: Roboto"
+            class="px-2"
+            @click="goToProfile(), (menu = false)"
+          >
+            <v-icon class="px-2">mdi-check-decagram</v-icon>
+            {{ $t('buttons.profile') }}
+          </v-list-item>
+          <div class="divider" />
           <v-list-item
             dense
             style="font-size: 14px; font: Roboto"
             class="px-2"
             @click="signOut(), (menu = false)"
           >
+            <v-icon class="px-2"> mdi-logout</v-icon>
             {{ $t('buttons.signout') }}
           </v-list-item>
         </v-list>
@@ -385,6 +395,10 @@ export default {
           .catch(() => {})
           .catch(() => {})
       })
+    },
+    goToProfile() {
+      console.log('profile')
+      this.$router.push('/profile')
     },
   },
 }
