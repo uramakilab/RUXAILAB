@@ -30,6 +30,9 @@
     "editDelete": "Editar/Borrar",
     "type": "Tipo",
     "noNotifications": "Aún no tienes notificaciones",
+    "notifications":"notificaciones",
+    "unread":"no leído",
+    "inbox":"Bandeja de entrada",
     "timeAgo": {
       "years": "Hace {count} año{count !== 1 ? 's' : ''}",
       "months": "Hace {count} mes{count !== 1 ? 'es' : ''}",
@@ -458,7 +461,9 @@
     "leave": "Dejar",
     "stay": "Quédate",
     "help": "Ayuda",
-    "delete": "Borrar"
+    "delete": "Borrar",
+    
+    "back":"Atrás"
   },
   "switches": {
     "noAnswer": "Sin respuesta",

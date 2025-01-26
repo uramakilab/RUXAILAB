@@ -11,13 +11,19 @@ import CreateView from '@/views/admin/CreateView.vue'
 import CreateBlankView from '@/views/admin/CreateBlankView'
 import CreateFromTemplate from '@/views/admin/CreateFromTemplateView.vue'
 import FinalReportView from '@/views/admin/FinalReportView'
-
+import Notification from '@/views/admin/NotificationPage.vue'
 export default [
   {
     path: '/testslist',
     name: 'TestList',
     meta: { authorize: [1] },
     component: TestList,
+  },
+  {
+    path: '/notifications',
+    name: 'notifications',
+    meta: { authorize: [1] },
+    component: Notification,
   },
   {
     path: '/managerview/:id/:token?',
